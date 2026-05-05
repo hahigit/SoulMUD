@@ -1,6 +1,6 @@
 # Testovací scénáře pro SoulMUD
 
-**Tested Project Name:** SoulMUD
+**Tested Project Name:** SoulKnightMUD
 
 Tento dokument obsahuje sadu testovacích scénářů určených pro manuální testování aplikace. Jsou naformátovány přesně podle **SPŠE Ječná Test Case** šablony tak, aby je mohli provést tví spolužáci.
 
