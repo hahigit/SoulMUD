@@ -1,6 +1,8 @@
 # Testovací scénáře pro Soul Knight MUD
 
-Tento dokument obsahuje sadu testovacích scénářů (Test Cases) určených pro manuální testování aplikace Soul Knight MUD. Testy jsou napsány tak, aby je mohl provést kdokoli bez předchozí znalosti kódu.
+**Tested Project Name:** Soul Knight MUD
+
+Tento dokument obsahuje sadu testovacích scénářů (Test Cases) určených pro manuální testování aplikace Soul Knight MUD. Testy jsou napsány tak, aby je mohl provést kdokoli bez předchozí znalosti kódu a naformátovány podle šablony SPŠE Ječná.
 
 ## Příprava a testovací účty
 
@@ -17,274 +19,381 @@ Před začátkem testování se ujistěte, že je server spuštěn (port 4000) a
 
 ## 1. MVP Funkce (Minimum Viable Product)
 
-### MVP01: Spuštění serveru
-* **Priorita:** Vysoká
-* **Předpoklady:** Aplikace je zkompilována. Port 4000 je volný.
-* **Kroky:**
-  1. Otevřete terminál ve složce `Server`.
-  2. Spusťte příkaz `dotnet run`.
-* **Testovací data:** Žádná.
-* **Očekávaný výsledek:** V konzoli serveru se vypíše zpráva `[SERVER] Herní svět načten...` a `[SERVER] Nasloucháme na portu 4000 (max 20 hráčů)...`. Server nespadne a běží.
+### SPSE Jecna Test Case: MVP01
+| Test Case ID: MVP01 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Spuštění serveru | |
+| **Brief description:** Ověření, že herní server lze úspěšně spustit a naslouchá. | |
+| **Pre-conditions:** Aplikace je zkompilována. Port 4000 je volný. | |
 
-### MVP02: Připojení klienta
-* **Priorita:** Vysoká
-* **Předpoklady:** Server běží podle MVP01.
-* **Kroky:**
-  1. Otevřete nový terminál ve složce `Client`.
-  2. Spusťte příkaz `dotnet run`.
-* **Testovací data:** IP: `localhost`, Port: `4000` (výchozí v klientovi).
-* **Očekávaný výsledek:** Klient se připojí, zobrazí uvítací banner hry s textem "Soul Knight MUD" a vypíše nabídku k přihlášení (`[1] Přihlásit se`, `[2] Vytvořit nový účet`).
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Otevřete terminál ve složce `Server` a spusťte příkaz pro start. | `dotnet run` | V konzoli serveru se vypíše zpráva `[SERVER] Herní svět načten...` a `[SERVER] Nasloucháme na portu 4000 (max 20 hráčů)...`. Server nespadne a běží. | Lze použít klávesu F5 ve VS Code. |
 
-### MVP03: Neúspěšné přihlášení (neexistující účet)
-* **Priorita:** Vysoká
-* **Předpoklady:** Klient je připojen k serveru.
-* **Kroky:**
-  1. Zvolte `1` (Přihlásit se).
-  2. Zadejte jméno neexistujícího hráče.
-  3. Zadejte libovolné heslo.
-* **Testovací data:** Jméno: `ghost_player_999`, Heslo: `Cokoliv`.
-* **Očekávaný výsledek:** Server zobrazí zprávu `Špatné jméno nebo heslo.` a znovu zobrazí úvodní nabídku pro přihlášení/registraci.
+<br><br>
 
-### MVP04: Neúspěšné přihlášení (špatné heslo)
-* **Priorita:** Vysoká
-* **Předpoklady:** Existuje hráč `tester_02`.
-* **Kroky:**
-  1. Zvolte `1` (Přihlásit se).
-  2. Zadejte jméno existujícího hráče.
-  3. Zadejte **nesprávné** heslo.
-* **Testovací data:** Jméno: `tester_02`, Heslo: `SpatneHeslo999`.
-* **Očekávaný výsledek:** Server zobrazí zprávu `Špatné jméno nebo heslo.` a znovu zobrazí úvodní nabídku.
+### SPSE Jecna Test Case: MVP02
+| Test Case ID: MVP02 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Připojení klienta | |
+| **Brief description:** Ověření úspěšného připojení do MUDu z klientské aplikace. | |
+| **Pre-conditions:** Server běží podle MVP01. | |
 
-### MVP05: Registrace nového hráče
-* **Priorita:** Vysoká
-* **Předpoklady:** Klient je připojen, účet `tester_01` ještě neexistuje.
-* **Kroky:**
-  1. V nabídce zvolte `2` (Vytvořit nový účet).
-  2. Zadejte nové uživatelské jméno.
-  3. Zadejte heslo.
-* **Testovací data:** Volba: `2`, Jméno: `tester_01`, Heslo: `Heslo123`.
-* **Očekávaný výsledek:** Zobrazí se zpráva `Účet 'tester_01' vytvořen! Dobrodružství začíná...`. Následně se automaticky načte první místnost ("Vstupní hala hradu") a zobrazí se herní prompt `[tester_01 | HP:100]>`.
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Otevřete nový terminál ve složce `Client` a zapněte program. | IP: `localhost`, Port: `4000` (výchozí) nebo `dotnet run` | Klient se připojí, zobrazí uvítací banner hry s textem "Soul Knight MUD" a vypíše nabídku k přihlášení (`[1] Přihlásit se`, `[2] Vytvořit nový účet`). | Lze použít i PuTTY. |
 
-### MVP06: Úspěšné přihlášení existujícího hráče
-* **Priorita:** Vysoká
-* **Předpoklady:** Účet `tester_01` existuje (vytvořen v MVP05). Hráč aktuálně není připojen.
-* **Kroky:**
-  1. Spusťte klienta a zvolte `1` (Přihlásit se).
-  2. Zadejte správné uživatelské jméno a heslo.
-* **Testovací data:** Jméno: `tester_01`, Heslo: `Heslo123`.
-* **Očekávaný výsledek:** Zobrazí se uvítací zpráva `Vítej zpět, tester_01!` a vypíše se obsah aktuální místnosti. Hráč se ocitne v herní smyčce.
+<br><br>
 
-### MVP07: Příkaz pomoc
-* **Priorita:** Nízká
-* **Předpoklady:** Hráč je přihlášen ve hře.
-* **Kroky:**
-  1. Do herního promptu zadejte příkaz pro nápovědu.
-* **Testovací data:** Příkaz: `pomoc`.
-* **Očekávaný výsledek:** Zobrazí se strukturovaná tabulka s nápovědou rozdělená do kategorií (POHYB, PŘEDMĚTY, POSTAVY & BOJ, atd.) obsahující syntaxi příkazů (např. `jdi <směr>`).
+### SPSE Jecna Test Case: MVP03
+| Test Case ID: MVP03 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Neúspěšné přihlášení (neexistující účet) | |
+| **Brief description:** Ověření odmítnutí přihlášení v případě, že jméno hráče není v databázi. | |
+| **Pre-conditions:** Klient je připojen k serveru. | |
 
-### MVP08: Zobrazení místnosti (prozkoumej)
-* **Priorita:** Střední
-* **Předpoklady:** Hráč je přihlášen (např. v místnosti Vstupní hala hradu).
-* **Kroky:**
-  1. Zadejte příkaz k prozkoumání místnosti.
-* **Testovací data:** Příkaz: `prozkoumej` (nebo `look`).
-* **Očekávaný výsledek:** Vypíše se ohraničený blok s názvem místnosti, jejím popisem, dostupnými východy (např. `sever`, `dolu`), seznamem předmětů a přítomnými NPC (např. `Strážce Aldric`).
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zvolte možnost přihlášení. | `1` | Server vyzve k zadání jména. | |
+| 2 | Zadejte jméno neexistujícího hráče a po výzvě i libovolné heslo. | Jméno: `ghost_player_999`, Heslo: `Cokoliv` | Server zobrazí zprávu `Špatné jméno nebo heslo.` a znovu zobrazí úvodní nabídku pro přihlášení/registraci. | |
 
-### MVP09: Pohyb mezi místnostmi
-* **Priorita:** Vysoká
-* **Předpoklady:** Hráč je ve Vstupní hale, kde je východ na sever.
-* **Kroky:**
-  1. Zkuste jít neplatným směrem.
-  2. Zkuste jít platným směrem (sever).
-* **Testovací data:**
-  * Neplatný směr: `jdi zapad`
-  * Platný směr: `jdi sever`
-* **Očekávaný výsledek:**
-  * Při `jdi zapad` server odpoví `Směrem 'zapad' se jít nedá.`.
-  * Při `jdi sever` se hráč přesune do místnosti "Zbrojnice" a automaticky se vypíše její popis a obsah.
+<br><br>
 
-### MVP10: Sebrání a odložení předmětu
-* **Priorita:** Vysoká
-* **Předpoklady:** Hráč je v místnosti s předmětem (ve Vstupní hale je `pochodna`).
-* **Kroky:**
-  1. Zkuste sebrat neexistující předmět.
-  2. Zkuste sebrat existující předmět.
-  3. Předmět následně odložte.
-* **Testovací data:**
-  * Neexistující: `vezmi blbost`
-  * Existující: `vezmi pochodna`
-  * Odložení: `odlož pochodna`
-* **Očekávaný výsledek:**
-  * `vezmi blbost` -> `Předmět 'blbost' tu nikde nevidíš.`
-  * `vezmi pochodna` -> `Vezmeš: pochodna. [Popis předmětu]` a předmět zmizí z místnosti.
-  * `odlož pochodna` -> `Odložíš pochodna na zem.` a předmět se znovu objeví v místnosti (viditelné po příkazu `prozkoumej`).
+### SPSE Jecna Test Case: MVP04
+| Test Case ID: MVP04 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Neúspěšné přihlášení (špatné heslo) | |
+| **Brief description:** Ověření ochrany účtu pomocí hesla. | |
+| **Pre-conditions:** Existuje hráč `tester_02`. | |
 
-### MVP11: Inventář a překročení kapacity
-* **Priorita:** Střední
-* **Předpoklady:** Hráč má ve Vstupní hale předměty, jejichž celková váha přesahuje kapacitu (15).
-* **Kroky:**
-  1. Seberte těžké předměty ze Zbrojnice (přesuňte se přes `jdi sever`). Zkuste sebrat vše (`mec`, `stit`, atd.), dokud nenarazíte na limit.
-  2. Zobrazte inventář.
-* **Testovací data:** Příkazy `vezmi mec`, `vezmi stit`, `inventar`.
-* **Očekávaný výsledek:**
-  * Při překročení kapacity server vypíše např. `Nemůžeš vzít 'mec' — inventář by byl příliš těžký.`.
-  * Příkaz `inventar` přehledně vypíše aktuální předměty, jejich váhu a statistiky v poměru k maximální nosnosti (např. `12/15 váha`).
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zvolte možnost přihlášení. | `1` | Server vyzve k zadání jména. | |
+| 2 | Zadejte jméno existujícího hráče a k němu nesprávné heslo. | Jméno: `tester_02`, Heslo: `SpatneHeslo999` | Server zobrazí zprávu `Špatné jméno nebo heslo.` a znovu zobrazí úvodní nabídku. | |
 
-### MVP12: Rozhovor s NPC
-* **Priorita:** Střední
-* **Předpoklady:** Hráč je v místnosti s NPC (Vstupní hala - Strážce Aldric).
-* **Kroky:**
-  1. Zkuste mluvit s neexistujícím NPC.
-  2. Promluvte s existujícím NPC.
-* **Testovací data:**
-  * Neexistující: `mluv karel`
-  * Existující: `mluv aldric`
-* **Očekávaný výsledek:**
-  * `mluv karel` -> `Žádná postava jménem 'karel' tu není.`
-  * `mluv aldric` -> Zobrazí se ASCII portrét a jedna z náhodných replik postavy v uvozovkách (např. `Strážce Aldric říká: "Vítej, dobrodruhu..."`).
+<br><br>
 
-### MVP13: Zobrazení ostatních hráčů v místnosti a připojení více klientů
-* **Priorita:** Vysoká
-* **Předpoklady:** Spuštěni dva klienti. Účty `tester_01` a `tester_02`.
-* **Kroky:**
-  1. V prvním okně se přihlaste jako `tester_01` a zůstaňte ve Vstupní hale.
-  2. Ve druhém okně se přihlaste jako `tester_02`.
-  3. V prvním okně (`tester_01`) napište `prozkoumej`.
-* **Testovací data:** Příkaz `prozkoumej` za `tester_01`.
-* **Očekávaný výsledek:**
-  * Při přihlášení druhého hráče se prvnímu hráči vypíše `>> tester_02 se přihlásil.`.
-  * Příkaz `prozkoumej` u `tester_01` ve výpisu místnosti zobrazí novou sekci `[HRÁČI] tester_02`.
+### SPSE Jecna Test Case: MVP05
+| Test Case ID: MVP05 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Registrace nového hráče | |
+| **Brief description:** Zajištění správného vytvoření účtu. | |
+| **Pre-conditions:** Klient je připojen, účet `tester_01` ještě neexistuje. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | V nabídce zvolte volbu pro nový účet a zadejte nová data. | Volba: `2`, Jméno: `tester_01`, Heslo: `Heslo123` | Zobrazí se zprávu `Účet 'tester_01' vytvořen! Dobrodružství začíná...`. Následně se automaticky načte první místnost ("Vstupní hala hradu") a zobrazí se herní prompt `[tester_01 | HP:100]>`. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP06
+| Test Case ID: MVP06 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Úspěšné přihlášení existujícího hráče | |
+| **Brief description:** Ověření možnosti standardního loginu k účtu. | |
+| **Pre-conditions:** Účet `tester_01` existuje (vytvořen v MVP05). Hráč aktuálně není připojen. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Spusťte klienta, zvolte přihlášení a zadejte validní data. | Volba: `1`, Jméno: `tester_01`, Heslo: `Heslo123` | Zobrazí se uvítací zpráva `Vítej zpět, tester_01!` a vypíše se obsah aktuální místnosti. Hráč se ocitne v herní smyčce. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP07
+| Test Case ID: MVP07 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Low | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Příkaz pomoc | |
+| **Brief description:** Kontrola dostupnosti a čitelnosti in-game nápovědy. | |
+| **Pre-conditions:** Hráč je přihlášen ve hře. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Do herního promptu zadejte příkaz pro nápovědu. | `pomoc` | Zobrazí se strukturovaná tabulka s nápovědou rozdělená do kategorií (POHYB, PŘEDMĚTY, atd.) obsahující syntaxi příkazů. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP08
+| Test Case ID: MVP08 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Zobrazení místnosti (prozkoumej) | |
+| **Brief description:** Ověření rozhlížení po lokaci. | |
+| **Pre-conditions:** Hráč je přihlášen (např. v místnosti Vstupní hala hradu). | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zadejte příkaz k prozkoumání místnosti. | `prozkoumej` (nebo `look`) | Vypíše se ohraničený blok s názvem místnosti, jejím popisem, dostupnými východy (např. `sever`), seznamem předmětů a přítomnými NPC. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP09
+| Test Case ID: MVP09 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Pohyb mezi místnostmi | |
+| **Brief description:** Ověření základního MUD pohybu hráče na světové mapě. | |
+| **Pre-conditions:** Hráč je ve Vstupní hale, kde je východ na sever. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zkuste jít neplatným směrem. | `jdi zapad` | Server odpoví `Směrem 'zapad' se jít nedá.`. Hráč setrvá v hale. | |
+| 2 | Zkuste jít platným směrem. | `jdi sever` | Hráč se přesune do místnosti "Zbrojnice" a automaticky se vypíše její popis a obsah. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP10
+| Test Case ID: MVP10 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Sebrání a odložení předmětu | |
+| **Brief description:** Ověření manipulace s itemy na podlaze. | |
+| **Pre-conditions:** Hráč je v místnosti s předmětem (ve Vstupní hale je `pochodna`). | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zkuste sebrat neexistující předmět. | `vezmi blbost` | `Předmět 'blbost' tu nikde nevidíš.` | |
+| 2 | Zkuste sebrat existující předmět. | `vezmi pochodna` | `Vezmeš: pochodna. [Popis předmětu]` a předmět zmizí z místnosti. | |
+| 3 | Předmět následně odložte. | `odlož pochodna` | `Odložíš pochodna na zem.` a předmět se znovu objeví v místnosti (viditelné po příkazu `prozkoumej`). | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP11
+| Test Case ID: MVP11 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Inventář a překročení kapacity | |
+| **Brief description:** Ověření funkcionality váhového limitu a výpisu. | |
+| **Pre-conditions:** Hráč má ve Vstupní hale předměty, jejichž celková váha přesahuje kapacitu (15). | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Seberte těžké předměty, dokud nenarazíte na limit. | `vezmi mec`, `vezmi stit`... | Při překročení kapacity server vypíše např. `Nemůžeš vzít 'mec' — inventář by byl příliš těžký.`. | |
+| 2 | Zobrazte inventář. | `inventar` | Příkaz přehledně vypíše aktuální předměty, jejich váhu a statistiky v poměru k max. nosnosti (např. `12/15 váha`). | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP12
+| Test Case ID: MVP12 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Rozhovor s NPC | |
+| **Brief description:** Interakce s postavami herního světa. | |
+| **Pre-conditions:** Hráč je v místnosti s NPC (Vstupní hala - Strážce Aldric). | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zkuste mluvit s neexistujícím NPC. | `mluv karel` | `Žádná postava jménem 'karel' tu není.` | |
+| 2 | Promluvte s existujícím NPC. | `mluv aldric` | Zobrazí se ASCII portrét a jedna z náhodných replik postavy v uvozovkách (např. `Strážce Aldric říká: "Vítej..."`). | |
+
+<br><br>
+
+### SPSE Jecna Test Case: MVP13
+| Test Case ID: MVP13 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Zobrazení ostatních hráčů v místnosti a připojení více klientů | |
+| **Brief description:** Ověření mutliplayer viditelnosti. | |
+| **Pre-conditions:** Spuštěni dva klienti. Účty `tester_01` a `tester_02`. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | V prvním okně se přihlaste jako `tester_01` a zůstaňte v hale. Ve druhém okně logněte `tester_02`. | Data z předpokladů | Při přihlášení druhého hráče se prvnímu vypíše `>> tester_02 se přihlásil.`. | |
+| 2 | V prvním okně napište příkaz. | `prozkoumej` | Výpis místnosti u Klienta 1 zobrazí novou sekci `[HRÁČI] tester_02`. | |
 
 ---
 
 ## 2. Povinné požadavky (I1–I4, P1)
 
-### REQ01 (I1): Načítání herního světa z externích souborů
-* **Priorita:** Střední
-* **Předpoklady:** Server běží. Máte přístup k souborům ve složce `Data/world/`.
-* **Kroky:**
-  1. Odpojte klienty a vypněte server (`Ctrl+C`).
-  2. V textovém editoru upravte soubor `Data/world/rooms.json` u místnosti s id `vstupni_hala`. Změňte hodnotu `title` na `Testovaci Hala`.
-  3. Zapněte server a připojte klienta.
-* **Testovací data:** Úprava JSONu, příkaz `prozkoumej`.
-* **Očekávaný výsledek:** Příkaz `prozkoumej` po přihlášení zobrazí v hlavičce `╔══ TESTOVACI HALA ══` (změna se projevila bez úpravy C# kódu). Následně vraťte změnu zpět.
+### SPSE Jecna Test Case: REQ01
+| Test Case ID: REQ01 (I1) | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Načítání herního světa z externích souborů | |
+| **Brief description:** Změna obsahu světa bez rekompilace programu. | |
+| **Pre-conditions:** Server běží. Máte přístup k souborům ve složce `Data/world/`. | |
 
-### REQ02 (I2): Logování na serveru
-* **Priorita:** Střední
-* **Předpoklady:** Během testování byly provedeny různé akce (přihlášení, pohyb, chyby).
-* **Kroky:**
-  1. Otevřete soubor `logs/server.log` (ve složce Serveru).
-  2. Projděte obsah logu.
-* **Testovací data:** Soubor `server.log`.
-* **Očekávaný výsledek:** Log obsahuje časová razítka a štítky. Záznamy ukazují např. `[INFO] [SERVER] Server spuštěn.`, `[AUTH] [tester_01] Nový účet vytvořen.` a zaznamenané příkazy hráčů.
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | V textovém editoru upravte JSON u `vstupni_hala`. Změňte hodnotu `title` a uložte. Poté zapněte server. | `Data/world/rooms.json` (nastavit "Testovaci Hala") | Soubor se uloží. | Server musí být před editací vypnutý. |
+| 2 | Připojte se a ověřte stav. | `prozkoumej` | Zobrazí se v hlavičce `╔══ TESTOVACI HALA ══` (změna se projevila). | |
 
-### REQ03 (I3): Persistence hráče po odpojení
-* **Priorita:** Vysoká
-* **Předpoklady:** Účet `tester_01` má u sebe zlaté a předmět (např. pochodeň) a nenachází se ve Vstupní hale (přešel např. do Zbrojnice).
-* **Kroky:**
-  1. V klientovi zadejte příkaz pro odpojení.
-  2. Klienta znovu spusťte, přihlaste se jako `tester_01`.
-  3. Zkontrolujte polohu a inventář.
-* **Testovací data:** Příkazy `/exit`, `prozkoumej`, `inventar`.
-* **Očekávaný výsledek:** Hráč se po novém připojení objeví zpět ve Zbrojnici (ne ve Vstupní hale) a v inventáři mu zůstane pochodeň a zlaté. Stav je zachován.
+<br><br>
 
-### REQ04 (I4): Funkcionalita vlastního klienta
-* **Priorita:** Nízká
-* **Předpoklady:** Klient je spuštěn a připojen.
-* **Kroky:**
-  1. Otestujte historii zadáním několika příkazů a následným stisknutím šipky `↑` (Nahoru).
-  2. Zadejte klientský příkaz `/clear`.
-* **Testovací data:** Šipka `↑`, příkaz `/clear`.
-* **Očekávaný výsledek:** Šipka nahoru vrátí naposledy zadaný text do vstupního řádku. Příkaz `/clear` vymaže obsah konzole (obrazovky).
+### SPSE Jecna Test Case: REQ02
+| Test Case ID: REQ02 (I2) | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Logování na serveru | |
+| **Brief description:** Ověření existence a zápisu serverového logu. | |
+| **Pre-conditions:** Během testování byly provedeny různé akce (přihlášení, pohyb). | |
 
-### REQ05 (P1): Dokončení hry (Win condition)
-* **Priorita:** Vysoká
-* **Předpoklady:** Založte účet `hero_99`. Server běží. (Pro usnadnění můžete v `items.json` nastavit `isWinCondition: true` u předmětu `pochodna` ve Vstupní hale).
-* **Kroky:**
-  1. Jděte k předmětu definujícímu výhru (Koruna stínu v Boss komnatě, nebo upravená pochodeň).
-  2. Předmět seberte příkazem `vezmi`.
-* **Testovací data:** Příkaz `vezmi koruna` (nebo `vezmi pochodna`).
-* **Očekávaný výsledek:** Zobrazí se ASCII art animace vítězství (hvězdy a banner) a text oznamující dokončení hry. Všem připojeným hráčům server pošle globální zprávu `*** hero_99 porazil Temného rytíře a dokončil hru! ***`.
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Otevřete logovací soubor na serveru a prohlédněte jej. | `logs/server.log` | Log obsahuje časová razítka a štítky jako `[INFO] [SERVER]`, `[AUTH] [tester_01]` a zaznamenané příkazy. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: REQ03
+| Test Case ID: REQ03 (I3) | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Persistence hráče po odpojení | |
+| **Brief description:** Ověření zachování lokace a inventáře. | |
+| **Pre-conditions:** Účet `tester_01` má u sebe předmět a nenachází se ve Vstupní hale. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Odpojte klienta, znovu ho spusťte a přihlaste se jako `tester_01`. | `/exit` a login | Hráč se po připojení objeví zpět na opuštěném místě a v inventáři mu zůstanou nabyté věci. Stav je zachován. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: REQ04
+| Test Case ID: REQ04 (I4) | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Low | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Funkcionalita vlastního klienta | |
+| **Brief description:** Test unikátních funkcí vytvořeného konzolového klienta. | |
+| **Pre-conditions:** Klient je spuštěn a připojen. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Otestujte historii stisknutím šipky `↑` (Nahoru). | Klávesa `↑` | Šipka nahoru vrátí naposledy zadaný text do vstupního řádku. | |
+| 2 | Zadejte klientský příkaz `/clear`. | `/clear` | Příkaz vymaže obsah konzole. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: REQ05
+| Test Case ID: REQ05 (P1) | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Dokončení hry (Win condition) | |
+| **Brief description:** Test úspěšného dohrání a reakce serveru. | |
+| **Pre-conditions:** Účet `hero_99` stojí u win předmětu. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Seberte vítězný předmět příkazem. | `vezmi koruna` (nebo upravená pochodeň) | Zobrazí se ASCII art animace vítězství a text oznamující dokončení hry. | |
+| 2 | Ověřte ostatní klienty. | - | Všem hráčům vyskočí globální zpráva `*** hero_99 porazil Temného rytíře a dokončil hru! ***`. | |
 
 ---
 
 ## 3. Herní mechaniky
 
-### M_BOJ_01: Útok na bojové NPC a jeho poražení
-* **Priorita:** Vysoká
-* **Předpoklady:** Hráč se nachází v "Hnízdě slizáků" (dostupné směrem dolů ze Vstupní haly). Je zde `slizak_blub`.
-* **Kroky:**
-  1. Zadejte příkaz k útoku.
-  2. Pokračujte v útoku, dokud NPC nepadne.
-* **Testovací data:** Příkaz `utoc blub`.
-* **Očekávaný výsledek:** Server zobrazí bojový výpis `⚔ BOJ: tester_01 vs Slizák Blub` s uděleným a obdrženým poškozením. Zobrazí se ASCII animace slizáka. Při dosažení 0 HP u NPC server napíše `Slizák Blub je poražen! Získáváš 8 zlatých.` a do místnosti spadne předmět "Zelený sliz".
+### SPSE Jecna Test Case: M_BOJ_01
+| Test Case ID: M_BOJ_01 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Útok na bojové NPC a jeho poražení | |
+| **Brief description:** Průchod soubojem a smrtí nepřítele. | |
+| **Pre-conditions:** Hráč se nachází v "Hnízdě slizáků" s nepřáteli. | |
 
-### M_BOJ_02: Pokus o útok na nebojové NPC
-* **Priorita:** Střední
-* **Předpoklady:** Hráč je ve Vstupní hale se `Strážcem Aldricem`.
-* **Kroky:**
-  1. Zadejte příkaz k útoku na strážce.
-* **Testovací data:** Příkaz `utoc aldric`.
-* **Očekávaný výsledek:** Server odmítne útok s hláškou: `Strážce Aldric na tebe smutně hledí. Jsi si jistý, že ho chceš napadnout?` K boji nedojde.
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zadejte příkaz k útoku, dokud NPC nepadne. | `utoc blub` | Server zobrazí výpis `⚔ BOJ: tester_01 vs Slizák Blub` a damage log. Při 0 HP server napíše `Slizák Blub je poražen...` a padne loot. | |
 
-### M_OBCH_01: Úspěšný nákup u obchodníka
-* **Priorita:** Střední
-* **Předpoklady:** Hráč je ve Zbrojnici (na sever od Haly) u Kováře Bjorna. Hráč má alespoň 50 zlatých.
-* **Kroky:**
-  1. Zobrazte nabídku obchodu.
-  2. Kupte předmět.
-* **Testovací data:**
-  * Zobrazení: `obchod`
-  * Nákup: `nakup mec`
-* **Očekávaný výsledek:** Příkaz `obchod` zobrazí ASCII art obchodu a ceník. Příkaz `nakup mec` strhne hráči 50 zlatých, přidá "Meč" do inventáře a vypíše zprávu `Kupuješ Meč za 50 zlatých...`.
+<br><br>
 
-### M_OBCH_02: Nákup bez dostatku zlatých
-* **Priorita:** Střední
-* **Předpoklady:** Hráč je u kováře Bjorna, ale má méně než 50 zlatých (např. nově vytvořený účet má 10).
-* **Kroky:**
-  1. Zkuste koupit meč.
-* **Testovací data:** Příkaz `nakup mec`.
-* **Očekávaný výsledek:** K nákupu nedojde. Server odpoví: `Nemáš dost zlatých. Potřebuješ 50, máš 10.` (hodnoty se mohou lišit podle aktuálního stavu).
+### SPSE Jecna Test Case: M_BOJ_02
+| Test Case ID: M_BOJ_02 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Pokus o útok na nebojové NPC | |
+| **Brief description:** Test ochrany nevinných NPC proti dmg. | |
+| **Pre-conditions:** Hráč je ve Vstupní hale se `Strážcem Aldricem`. | |
 
-### M_STAT_01: Použití předmětu (Léčivý lektvar)
-* **Priorita:** Vysoká
-* **Předpoklady:** Hráč utrpěl poškození v boji (HP je menší než maximum) a má v inventáři `lektvár_leceni` (možno koupit u Lyry).
-* **Kroky:**
-  1. Zkuste použít předmět, který nelze použít (např. meč).
-  2. Použijte lektvar.
-* **Testovací data:** `použij mec`, `použij lektvár`.
-* **Očekávaný výsledek:**
-  * U meče: `'Meč' se nedá použít.`
-  * U lektvaru: Zobrazí se ASCII animace lahvičky, text `Vypiješ lektvar a tvé rány se zacelují.` a HP hráče se doplní (např. `HP: 100/100`). Předmět z inventáře zmizí.
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zadejte příkaz k útoku na strážce. | `utoc aldric` | Server odmítne útok s hláškou: `Strážce Aldric na tebe smutně hledí...` K boji nedojde. | |
 
-### M_STAT_02: Status efekt místnosti
-* **Priorita:** Střední
-* **Předpoklady:** V souboru `rooms.json` má místnost nastaven `statusEffect` (např. "poison"). V defaultních datech může chybět, pro test přidejte `"statusEffect": "poison"` např. do "Hnízda slizáků".
-* **Kroky:**
-  1. Vstupte do upravené místnosti.
-  2. Napište jakýkoliv další příkaz (např. `prozkoumej`), aby se "odtickoval" čas.
-* **Testovací data:** Přechod do místnosti `jdi dolu` (pokud je to hnízdo). Příkazy v místnosti.
-* **Očekávaný výsledek:** Při vstupu server červeně varuje `⚠ Cítíš podivnou energii v místnosti...` a aplikuje status "Otrávení". Při zadání dalšího příkazu server vypíše poškození jedem `[Otrávení] Jed ti koluje v žilách... HP: 95/100`.
+<br><br>
 
-### M_SOC_01: Odeslání soukromé zprávy (Whisper)
-* **Priorita:** Střední
-* **Předpoklady:** Klient 1 (`tester_01`) a Klient 2 (`tester_02`) jsou připojeni. Nemusí být ve stejné místnosti.
-* **Kroky:**
-  1. V Klientovi 1 zadejte příkaz k šeptání Klientovi 2.
-* **Testovací data:** Příkaz (v Klient 1): `šeptej tester_02 Ahoj, kde jsi?`
-* **Očekávaný výsledek:**
-  * V Klientovi 1 se zobrazí: `🔒 [Šeptáš hráči tester_02]: Ahoj, kde jsi?`
-  * V Klientovi 2 se zobrazí fialovým textem: `🔒 [tester_01 ti šeptá]: Ahoj, kde jsi?`
+### SPSE Jecna Test Case: M_OBCH_01
+| Test Case ID: M_OBCH_01 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Střední | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Úspěšný nákup u obchodníka | |
+| **Brief description:** Nákup zboží pro výměnu zlaťáků za item. | |
+| **Pre-conditions:** Hráč je u Kováře Bjorna. Má alespoň 50 zlatých. | |
 
-### M_SOC_02: Pokus o šeptání neexistujícímu/offline hráči
-* **Priorita:** Střední
-* **Předpoklady:** Hráč `tester_01` je připojen. Účet `karel` není připojen.
-* **Kroky:**
-  1. Zkuste šeptat hráči, který není online.
-  2. Zkuste šeptat sami sobě.
-* **Testovací data:**
-  * Offline hráč: `šeptej karel Tajemství`
-  * Sám sobě: `šeptej tester_01 Haló`
-* **Očekávaný výsledek:**
-  * Při psaní offline hráči: `Hráč 'karel' není online.`
-  * Při psaní sobě: `Nemůžeš šeptat sám sobě.` Zpráva se nikam neodešle.
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zobrazte nabídku a kupte zbraň. | `obchod`, pak `nakup mec` | `obchod` zobrazí ceník. Nákup strhne 50 zlatých, přidá "Meč" a vypíše zprávu `Kupuješ Meč za 50...`. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: M_OBCH_02
+| Test Case ID: M_OBCH_02 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Střední | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Nákup bez dostatku zlatých | |
+| **Brief description:** Zajištění proti "ukradení" věci obchodníkovi. | |
+| **Pre-conditions:** Hráč je u kováře s méně než 50 zlata. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zkuste koupit drahý meč. | `nakup mec` | K nákupu nedojde. Zobrazí se `Nemáš dost zlatých. Potřebuješ 50...`. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: M_STAT_01
+| Test Case ID: M_STAT_01 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** High | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Použití předmětu (Léčivý lektvar) | |
+| **Brief description:** Aplikace spotřebitelných itemů a hojení HP. | |
+| **Pre-conditions:** Hráč utrpěl poškození a má v inventáři `lektvár_leceni` a `mec`. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zkuste použít zbraň. | `použij mec` | `'Meč' se nedá použít.` | |
+| 2 | Použijte lektvar. | `použij lektvár` | Přehrána ASCII animace. Text `Vypiješ lektvar a tvé rány se zacelují.` HP se doplní. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: M_STAT_02
+| Test Case ID: M_STAT_02 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Status efekt místnosti | |
+| **Brief description:** Aplikace debuffu z prostředí (jed apod.). | |
+| **Pre-conditions:** Místnost má v `rooms.json` nastaven `statusEffect` (poison). | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Vstupte do upravené místnosti. Zadejte jakýkoliv další příkaz, aby prošel tah. | `jdi dolu`, `prozkoumej` | Při vstupu server varuje `⚠ Cítíš podivnou energii v místnosti...` a udělí "Otrávení". Po tahu vypíše damage log `[Otrávení] Jed ti koluje v žilách... HP: 95/100`. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: M_SOC_01
+| Test Case ID: M_SOC_01 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Odeslání soukromé zprávy (Whisper) | |
+| **Brief description:** Ověření P2P chatu. | |
+| **Pre-conditions:** Klient 1 (`tester_01`) a Klient 2 (`tester_02`) jsou připojeni. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | V Klientovi 1 zadejte příkaz k šeptání Klientovi 2. | `šeptej tester_02 Ahoj` | V Klientu 1: `🔒 [Šeptáš hráči tester_02]: Ahoj`. U Klienta 2: `🔒 [tester_01 ti šeptá]: Ahoj`. | |
+
+<br><br>
+
+### SPSE Jecna Test Case: M_SOC_02
+| Test Case ID: M_SOC_02 | Test Designed by: San Nguyen, Hai Hoang |
+| :--- | :--- |
+| **Test Priority (Low/Medium/High):** Low | **Test Designed date:** 6. 5. 2026 |
+| **Test Title:** Pokus o šeptání neexistujícímu/offline hráči | |
+| **Brief description:** Reakce příkazu v případě, že socket neexistuje. | |
+| **Pre-conditions:** Hráč `tester_01` je připojen. Účet `karel` není připojen. | |
+
+| Step | Test Steps | Test Data | Expected Result | Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| 1 | Zkuste šeptat offline hráči. | `šeptej karel Tajemství` | `Hráč 'karel' není online.` Zpráva neodejde. | |
+| 2 | Zkuste šeptat sami sobě. | `šeptej tester_01 Haló` | `Nemůžeš šeptat sám sobě.` | |
