@@ -1,15 +1,15 @@
-# Testovací scénáře pro SoulMUD
+# Testovací scénáře pro Soul Knight MUD
 
-**Tested Project Name:** SoulKnightMUD
+**Tested Project Name:** Soul Knight MUD
 
 Tento dokument obsahuje sadu testovacích scénářů určených pro manuální testování aplikace. Jsou naformátovány přesně podle **SPŠE Ječná Test Case** šablony tak, aby je mohli provést tví spolužáci.
 
 ## Příprava - Testovací účty
 Před testováním by si měl tester vytvořit nebo připravit tyto účty (registrace se testuje hned v `MVP_05`):
-* **Hráč 1:** Jméno: `tester_01`, Heslo: `Heslo123`
-* **Hráč 2:** Jméno: `tester_02`, Heslo: `Heslo123`
+* **Existující hráč:** Jméno: `test_player`, Heslo: `Test123`
+* **Hráč pro registraci:** Jméno: `new_player_001`, Heslo: `New123`
 * **Neexistující hráč:** `ghost_player_999`
-* **Hrdina (pro Win):** `hero_99`, Heslo: `Hero123`
+* **Hráč s uloženým stavem:** `saved_player`, Heslo: `Save123` (používá se pro dokončení hry a test perzistence)
 
 ---
 
@@ -66,12 +66,12 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Neúspěšné přihlášení (špatné heslo) | |
 | **Brief description:** Ověření reakce serveru na přihlášení existujícím účtem, ale se špatným heslem. | |
-| **Pre-conditions:** Zaregistrovaný hráč `tester_02` existuje. | |
+| **Pre-conditions:** Zaregistrovaný hráč `test_player` existuje. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | Zvolit možnost přihlášení v uvítací nabídce. | `1` | Server vyzve k zadání jména. | |
-| 2 | Zadat jméno existujícího hráče. | `tester_02` | Server vyzve k zadání hesla. | |
+| 2 | Zadat jméno existujícího hráče. | `test_player` | Server vyzve k zadání hesla. | |
 | 3 | Zadat nesprávné heslo. | `SpatneHeslo999` | Server vypíše chybu `Špatné jméno nebo heslo.` a znovu zobrazí počáteční nabídku. | |
 
 <br><br>
@@ -82,13 +82,13 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Registrace nového hráče | |
 | **Brief description:** Ověření úspěšné registrace a vpuštění hráče do hry. | |
-| **Pre-conditions:** Klient je připojen k serveru, účet `tester_01` ještě neexistuje. | |
+| **Pre-conditions:** Klient je připojen k serveru, účet `new_player_001` ještě neexistuje. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | V nabídce zvolit registraci nového účtu. | `2` | Server vyzve k zadání nového jména. | |
-| 2 | Zadat nové, unikátní uživatelské jméno. | `tester_01` | Server vyzve k zadání hesla. | |
-| 3 | Zadat heslo. | `Heslo123` | Vypíše se `Účet 'tester_01' vytvořen!`. Načte se "Vstupní hala hradu" a objeví se herní prompt. | |
+| 2 | Zadat nové, unikátní uživatelské jméno. | `new_player_001` | Server vyzve k zadání hesla. | |
+| 3 | Zadat heslo. | `New123` | Vypíše se `Účet 'new_player_001' vytvořen!`. Načte se "Vstupní hala hradu" a objeví se herní prompt. | |
 
 <br><br>
 
@@ -98,12 +98,12 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Úspěšné přihlášení existujícího hráče | |
 | **Brief description:** Ověření loginu u dříve vytvořeného účtu. | |
-| **Pre-conditions:** Účet `tester_01` z testu MVP_05 existuje a hráč není zrovna online. | |
+| **Pre-conditions:** Účet `new_player_001` z testu MVP_05 existuje a hráč není zrovna online. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | Připojit se a zvolit `Přihlásit se`. | `1` | Výzva ke jménu. | |
-| 2 | Zadat správné jméno a správné heslo. | `tester_01`, `Heslo123` | Zobrazí se uvítací zpráva `Vítej zpět, tester_01!`, popis aktuální místnosti a herní prompt. | |
+| 2 | Zadat správné jméno a správné heslo. | `new_player_001`, `New123` | Zobrazí se uvítací zpráva `Vítej zpět, new_player_001!`, popis aktuální místnosti a herní prompt. | |
 
 <br><br>
 
@@ -141,7 +141,7 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Pohyb mezi místnostmi | |
 | **Brief description:** Ověření, že hráč může chodit mezi lokacemi. | |
-| **Pre-conditions:** Hráč se nachází v lokaci s východem na sever (Vstupní hala). | |
+| **Pre-conditions:** Hráč je ve Vstupní hale, kde je východ na sever. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -156,7 +156,7 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Sebrání a odložení předmětu | |
 | **Brief description:** Ověření interakce s itemy a úpravy inventáře. | |
-| **Pre-conditions:** Hráč je ve Vstupní hale, kde leží předmět `pochodna`. | |
+| **Pre-conditions:** Hráč je v místnosti s předmětem (ve Vstupní hale je `pochodna`). | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -202,12 +202,12 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Více klientů a zobrazení hráčů v místnosti | |
 | **Brief description:** Zajištění, že hráči se navzájem vidí ve stejné lokaci. | |
-| **Pre-conditions:** Klient 1 (`tester_01`) je online v hale. Spuštěno okno Klienta 2. | |
+| **Pre-conditions:** Spuštěni dva klienti. Hráč `new_player_001` je online v hale. Spuštěno okno Klienta 2. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Přihlásit hráče č. 2 ze druhého okna klienta. | `tester_02`, `Heslo123` | Klient 1 obdrží broadcast zprávu `>> tester_02 se přihlásil.` | |
-| 2 | V Klientu 1 zadat zobrazení okolí. | `prozkoumej` | Výpis místnosti bude obsahovat novou sekci `[HRÁČI]` s uvedeným jménem `tester_02`. | |
+| 1 | Přihlásit hráče č. 2 ze druhého okna klienta. | `test_player`, `Test123` | Klient 1 obdrží broadcast zprávu `>> test_player se přihlásil.` | |
+| 2 | V Klientu 1 zadat zobrazení okolí. | `prozkoumej` | Výpis místnosti bude obsahovat novou sekci `[HRÁČI]` s uvedeným jménem `test_player`. | |
 
 ---
 
@@ -249,12 +249,12 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Persistence hráče po odpojení | |
 | **Brief description:** Ověření vlastnosti I3 – data se uloží a po restartu nahrají. | |
-| **Pre-conditions:** `tester_01` má u sebe zlaté a např. meč. Nachází se jinde než na startu (např. ve Zbrojnici). | |
+| **Pre-conditions:** `new_player_001` má u sebe zlaté a např. meč. Nachází se jinde než na startu (např. ve Zbrojnici). | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | 1 | Násilně odpojit klienta nebo napsat příkaz na exit. | Ukončit okno klienta | Server zaloguje odpojení. | |
-| 2 | Spustit klienta, znovu se přihlásit. Zkontrolovat stav. | `tester_01`, `Heslo123`, `prozkoumej`, `inventar` | Hráč nezačíná znovu, ale ocitne se rovnou ve Zbrojnici. Příkaz inventář vypíše vlastněný meč i uložené zlaťáky. | |
+| 2 | Spustit klienta, znovu se přihlásit. Zkontrolovat stav. | `new_player_001`, `New123`, `prozkoumej`, `inventar` | Hráč nezačíná znovu, ale ocitne se rovnou ve Zbrojnici. Příkaz inventář vypíše vlastněný meč i uložené zlaťáky. | |
 
 <br><br>
 
@@ -279,12 +279,12 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Dokončení hry (Win condition) | |
 | **Brief description:** Ověření vlastnosti P1 – hru je možné úspěšně dohrát ziskem win itemu. | |
-| **Pre-conditions:** Účet `hero_99` stojí v místnosti s `Korunou stínu` (Boss room). | |
+| **Pre-conditions:** Účet `saved_player` stojí v místnosti s `Korunou stínu` (Boss room). | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Zadat příkaz pro sebrání quest/win předmětu. | `vezmi koruna` | Zobrazí se ASCII art animace vítězství (hvězdy, legendární banner) a gratulační text s časem. | Lze otestovat i nastavením vlastnosti isWinCondition u libovolného předmětu na startu. |
-| 2 | Ostatní klienti kontrolují obrazovku. | - | Všem hráčům na serveru vyskočí globální zpráva: `*** hero_99 porazil Temného rytíře a dokončil hru! ***`. | |
+| 1 | Přihlásit se na saved_player a zadat příkaz pro sebrání quest/win předmětu. | Účet: `saved_player`, Heslo: `Save123`, Příkaz `vezmi koruna` | Zobrazí se ASCII art animace vítězství (hvězdy, legendární banner) a gratulační text s časem. | |
+| 2 | Ostatní klienti kontrolují obrazovku. | - | Všem hráčům na serveru vyskočí globální zpráva: `*** saved_player porazil Temného rytíře a dokončil hru! ***`. | |
 
 ---
 
@@ -296,11 +296,11 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Útok na bojové NPC a jeho poražení | |
 | **Brief description:** Ověření funkčnosti stěžejní bojové smyčky. | |
-| **Pre-conditions:** Hráč je v Hnízdě slizáků. Stojí proti `Slizák Blub`. | |
+| **Pre-conditions:** Hráč `new_player_001` je v Hnízdě slizáků. Stojí proti `Slizák Blub`. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Zadat příkaz k napadení nepřítele. | `utoc blub` | Přehraje se bojová ASCII animace slizáka. Poté se vypíše protokol `⚔ BOJ: tester_01 vs Slizák Blub`. Vypíše se dmg hráče i protiútok nepřítele. | |
+| 1 | Zadat příkaz k napadení nepřítele. | `utoc blub` | Přehraje se bojová ASCII animace slizáka. Poté se vypíše protokol `⚔ BOJ: new_player_001 vs Slizák Blub`. Vypíše se dmg hráče i protiútok nepřítele. | |
 | 2 | Pokračovat v útocích do doby, než NPC zemře (HP pod 0). | `utoc blub` x krát | Na konci se objeví hláška o poražení postavy. Vypíše se počet nabytých zlaťáků a na zem spadne loot. | |
 
 <br><br>
@@ -325,7 +325,7 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** High | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Úspěšný nákup u obchodníka | |
 | **Brief description:** Ověření převodu zlata za itemy. | |
-| **Pre-conditions:** Hráč je u kováře Bjorna. Má dostatek zlatých (např. z boje, nebo ručně zvednutých v save JSONu na 100). | |
+| **Pre-conditions:** Účet `saved_player` je u kováře Bjorna. Z předchozích testů má nastaveno dostatek zlatých (1000). | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -340,7 +340,7 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Pokus o nákup bez dostatku zlatých | |
 | **Brief description:** Ověření ochrany obchodu proti free itemům. | |
-| **Pre-conditions:** Hráč u kováře má u sebe jen 10 zlatých. Meč stojí 50. | |
+| **Pre-conditions:** Účet pro registraci `new_player_001` je u kováře Bjorna, ale má u sebe jen minimum peněz (např. 10 zlatých). Meč stojí 50. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
@@ -384,12 +384,12 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** Medium | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Odeslání soukromé zprávy (Whisper) | |
 | **Brief description:** Ověření funkčnosti peer-to-peer chatu bez ohledu na vzdálenost. | |
-| **Pre-conditions:** Jsou online klienti `tester_01` i `tester_02`. Každý stojí v jiné místnosti. | |
+| **Pre-conditions:** Jsou online klienti `new_player_001` i `test_player`. Každý stojí v jiné místnosti. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | V klientu prvního hráče poslat soukromou zprávu. | `šeptej tester_02 Ahoj` | Klient 1 uvidí log o úspěšném odeslání: `🔒 [Šeptáš hráči tester_02]: Ahoj` | |
-| 2 | Zkontrolovat pohled u Klienta 2. | - | U Klienta 2 okamžitě vyskočí zabarvená zpráva `🔒 [tester_01 ti šeptá]: Ahoj`. | |
+| 1 | V klientu prvního hráče poslat soukromou zprávu. | `šeptej test_player Ahoj` | Klient 1 uvidí log o úspěšném odeslání: `🔒 [Šeptáš hráči test_player]: Ahoj` | |
+| 2 | Zkontrolovat pohled u Klienta 2. | - | U Klienta 2 okamžitě vyskočí zabarvená zpráva `🔒 [new_player_001 ti šeptá]: Ahoj`. | |
 
 <br><br>
 
@@ -399,9 +399,9 @@ Před testováním by si měl tester vytvořit nebo připravit tyto účty (regi
 | **Test Priority (Low/Medium/High):** Low | **Test Designed date:** 5. 5. 2026 |
 | **Test Title:** Pokus o šeptání neexistujícímu/offline hráči | |
 | **Brief description:** Ochrana proti zasílání MSG do prázdna a sám sobě. | |
-| **Pre-conditions:** Spuštěn pouze hráč `tester_01`. Účet `karel` je offline. | |
+| **Pre-conditions:** Spuštěn pouze hráč `new_player_001`. Účet `karel` je offline. | |
 
 | Step | Test Steps | Test Data | Expected Result | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| 1 | Poslat zprávu hráči Karel. | `šeptej karel Test` | Hra ohlásí neúspěch doručení: `Hráč 'karel' není online nebo neexistuje.` Zpráva se nepošle do globálního chatu. | |
-| 2 | Zkusit poslat zprávu na svůj vlastní účet. | `šeptej tester_01 Haló` | Klient se zachytí a vypíše: `Nemůžeš šeptat sám sobě.` | |
+| 1 | Poslat zprávu hráči Karel. | `šeptej karel Test` | Hra ohlásí neúspěch doručení: `Hráč 'karel' není online.` Zpráva se nepošle do globálního chatu. | |
+| 2 | Zkusit poslat zprávu na svůj vlastní účet. | `šeptej new_player_001 Haló` | Klient se zachytí a vypíše: `Nemůžeš šeptat sám sobě.` | |
