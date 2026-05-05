@@ -1,0 +1,16 @@
+# 1. Výstupní složky kompilace (C# standard)
+bin/
+obj/
+
+# 2. Uživatelská data a logy tvého serveru (nesdílet cizí hesla!)
+**/Data/players/
+**/logs/
+
+# 3. Skryté složky vývojových prostředí (Rider, Visual Studio)
+.idea/
+.vs/
+*.user
+
+# 4. Dočasné systémové soubory (Windows/Mac)
+Thumbs.db
+.DS_Store
