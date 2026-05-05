@@ -1,4 +1,4 @@
-# Testovací scénáře pro Soul Knight MUD
+# Testovací scénáře pro Soul Knight MUD verze 2
 
 **Tested Project Name:** Soul Knight MUD
 
