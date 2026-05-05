@@ -35,7 +35,7 @@ Textová RPG hra pro více hráčů v C# (klient-server architektura). Projekt s
 * **M12 Stavové efekty**: Systém statusů (otrávení, posílení), které tikají každé kolo.
 
 ### Cíl a dokončení hry (P1)
-Hra je dokončena poražením Bosse a získáním „Koruny stínu“. Vítězství je oznámeno celému serveru a hráč je zapsán do **Síně slávy** (`leaderboard.json`).
+Hra je dokončena poražením Bosse a získáním „Koruny stínu". Vítězství je oznámeno celému serveru a hráč je zapsán do **Síně slávy** (`leaderboard.json`).
 
 ---
 
@@ -51,3 +51,46 @@ Hra je dokončena poražením Bosse a získáním „Koruny stínu“. Vítězst
 | **Ostatní** | `žebříček`, `pomoc` |
 
 *Poznámka: Server ignoruje diakritiku, můžete psát s háčky i bez nich.*
+
+---
+
+## 4. Testovací scénáře (Test Cases)
+
+Kompletní testovací plán je dokumentován v souboru [`TestCases.md`](./TestCases.md). Zde je přehled jednotlivých kategorií testů:
+
+### MVP Funkce
+- [MVP_01: Spuštění serveru](./TestCases.md#spse-jecna-test-case-mvp_01)
+- [MVP_02: Připojení klienta](./TestCases.md#spse-jecna-test-case-mvp_02)
+- [MVP_03: Neúspěšné přihlášení (neexistující účet)](./TestCases.md#spse-jecna-test-case-mvp_03)
+- [MVP_04: Neúspěšné přihlášení (špatné heslo)](./TestCases.md#spse-jecna-test-case-mvp_04)
+- [MVP_05: Registrace nového hráče](./TestCases.md#spse-jecna-test-case-mvp_05)
+- [MVP_06: Úspěšné přihlášení existujícího hráče](./TestCases.md#spse-jecna-test-case-mvp_06)
+- [MVP_07: Příkaz pomoc](./TestCases.md#spse-jecna-test-case-mvp_07)
+- [MVP_08: Zobrazení místnosti](./TestCases.md#spse-jecna-test-case-mvp_08)
+- [MVP_09: Pohyb mezi místnostmi](./TestCases.md#spse-jecna-test-case-mvp_09)
+- [MVP_10: Sebrání a odložení předmětu](./TestCases.md#spse-jecna-test-case-mvp_10)
+- [MVP_11: Inventář a překročení kapacity](./TestCases.md#spse-jecna-test-case-mvp_11)
+- [MVP_12: Rozhovor s NPC](./TestCases.md#spse-jecna-test-case-mvp_12)
+- [MVP_13: Více klientů a zobrazení hráčů v místnosti](./TestCases.md#spse-jecna-test-case-mvp_13)
+
+### Povinné požadavky (I1–I4, P1)
+- [REQ_01: Načítání herního světa z externích souborů](./TestCases.md#spse-jecna-test-case-req_01)
+- [REQ_02: Logování na serveru](./TestCases.md#spse-jecna-test-case-req_02)
+- [REQ_03: Persistence hráče po odpojení](./TestCases.md#spse-jecna-test-case-req_03)
+- [REQ_04: Funkcionalita vlastního klienta](./TestCases.md#spse-jecna-test-case-req_04)
+- [REQ_05: Dokončení hry (Win condition)](./TestCases.md#spse-jecna-test-case-req_05)
+
+### Herní mechaniky
+- [M_BOJ_01: Útok na bojové NPC a jeho poražení](./TestCases.md#spse-jecna-test-case-m_boj_01)
+- [M_BOJ_02: Pokus o útok na nebojové NPC](./TestCases.md#spse-jecna-test-case-m_boj_02)
+- [M_OBCH_01: Úspěšný nákup u obchodníka](./TestCases.md#spse-jecna-test-case-m_obch_01)
+- [M_OBCH_02: Pokus o nákup bez dostatku zlatých](./TestCases.md#spse-jecna-test-case-m_obch_02)
+- [M_STAT_01: Použití předmětu (Léčivý lektvar)](./TestCases.md#spse-jecna-test-case-m_stat_01)
+- [M_STAT_02: Status efekt místnosti](./TestCases.md#spse-jecna-test-case-m_stat_02)
+- [M_SOC_01: Odeslání soukromé zprávy (Whisper)](./TestCases.md#spse-jecna-test-case-m_soc_01)
+- [M_SOC_02: Pokus o šeptání neexistujícímu/offline hráči](./TestCases.md#spse-jecna-test-case-m_soc_02)
+
+Všechny test cases jsou také dostupné ve formátech:
+- 📄 [TestCases.md](./TestCases.md) — Formát Markdown (doporučeno)
+- 📋 [TestCases.pdf](./TestCases.pdf) — Formát PDF
+- 📑 [TestCases.docx](./TestCases.docx) — Formát Microsoft Word
