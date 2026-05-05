@@ -35,6 +35,26 @@ public class MudServer
         _log.Info("SERVER", $"Resources načteny z '{cfg.ResourcesPath}'.").Wait();
         if (_debugMode)
             _log.Info("SERVER", "DEBUG režim aktivní.").Wait();
+
+        // Vytvoření testovacích účtů podle TestCases.md
+        SeedTestPlayers().Wait();
+    }
+
+    private async Task SeedTestPlayers()
+    {
+        if (!_store.Exists("test_player"))
+        {
+            await _store.CreateNew("test_player", "Test123");
+            await _log.Info("SERVER", "Vytvořen testovací účet: test_player");
+        }
+        if (!_store.Exists("saved_player"))
+        {
+            var saved = await _store.CreateNew("saved_player", "Save123");
+            saved.RoomId = "boss_komnata"; // Přesun do Boss room
+            saved.Gold = 1000;
+            await _store.Save(saved);
+            await _log.Info("SERVER", "Vytvořen testovací účet: saved_player");
+        }
     }
 
     public async Task RunAsync()
