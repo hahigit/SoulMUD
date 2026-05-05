@@ -1,0 +1,83 @@
+[
+  {
+    "id": "vstupni_hala",
+    "title": "Vstupní hala hradu",
+    "description": "Mohutná kamenná síň osvětlená pochodněmi. Zeď pokrývají vybledlé erby dávno padlých rytířů. Vzduch páchne spáleninou a kovem.",
+    "exits": { "sever": "zbrojnice", "vychod": "trh", "dolu": "dungeon_patro1" },
+    "itemIds": ["pochodna", "stara_mapa"],
+    "npcIds": ["aldric"],
+    "statusEffect": null
+  },
+  {
+    "id": "zbrojnice",
+    "title": "Zbrojnice",
+    "description": "Stěny pokryté zbraněmi a zbrojí. Většina je zrezivělá, ale pár kusů stále září. Kovář tu zanechal nástroje — viditelně odešel ve spěchu.",
+    "exits": { "jih": "vstupni_hala", "zapad": "magicka_dilna" },
+    "itemIds": ["mec", "kuse", "stit", "lektvár_leceni"],
+    "npcIds": ["bjorn"],
+    "statusEffect": null
+  },
+  {
+    "id": "magicka_dilna",
+    "title": "Magická dílna",
+    "description": "Místnost plná bublajících kotlíků, svitků a divných světýlek. Na stropě visí svazky sušených bylin. Vzduch tu mírně jiskří od magie.",
+    "exits": { "vychod": "zbrojnice" },
+    "itemIds": ["magicky_svitek", "modry_krystal", "grimoir"],
+    "npcIds": ["lyra"],
+    "statusEffect": null
+  },
+  {
+    "id": "trh",
+    "title": "Podzemní tržiště",
+    "description": "I v hloubi hradu existuje obchod. Stánky nabízejí zboží pochybného původu. Svíčky vrhají tančící stíny na tváře obchodníků.",
+    "exits": { "zapad": "vstupni_hala", "jih": "hospoda" },
+    "itemIds": ["zlata_mince"],
+    "npcIds": ["remy"],
+    "statusEffect": null
+  },
+  {
+    "id": "hospoda",
+    "title": "Hospoda U Padlého rytíře",
+    "description": "Překvapivě útulné místo v útrobách hradu. Těžké dubové stoly, pach piva a smažené zvěřiny. Na zdi visí hlava draka.",
+    "exits": { "sever": "trh" },
+    "itemIds": ["temne_pivo", "smazeny_krys"],
+    "npcIds": ["grunk"],
+    "statusEffect": null
+  },
+  {
+    "id": "dungeon_patro1",
+    "title": "Dungeon – 1. patro",
+    "description": "Vlhká kamenná chodba osvětlená jen zelenou září hub na zdech. Vzduch je těžký a někde v temnotě něco skučí.",
+    "exits": { "nahoru": "vstupni_hala", "dolu": "dungeon_patro2", "sever": "slizaci_hnizdo" },
+    "itemIds": ["rezavy_klic", "kosteny_amulet"],
+    "npcIds": ["duch_rytire"],
+    "statusEffect": null
+  },
+  {
+    "id": "slizaci_hnizdo",
+    "title": "Hnízdo slizáků",
+    "description": "Místnost pokrytá zeleným slizem od podlahy po strop. Na zemi leží zbytky zbroje předchozích dobrodruhů.",
+    "exits": { "jih": "dungeon_patro1" },
+    "itemIds": ["zeleny_sliz", "rytirska_prilba", "zlaty_vacek"],
+    "npcIds": ["slizak_blub", "slizak_elder"],
+    "statusEffect": null
+  },
+  {
+    "id": "dungeon_patro2",
+    "title": "Dungeon – 2. patro",
+    "description": "Tma zde je skoro hmatatelná. Zdi jsou pokryty runami, které slabě pulzují červeným světlem.",
+    "exits": { "nahoru": "dungeon_patro1", "zapad": "boss_komnata" },
+    "itemIds": ["runovy_kamen", "lektvár_sily"],
+    "npcIds": ["zahadny_poutnik"],
+    "statusEffect": null
+  },
+  {
+    "id": "boss_komnata",
+    "title": "Komnata Temného rytíře",
+    "description": "Obrovská kruhová síň s trůnem z kostí uprostřed. Na trůně sedí figura v černé zbroji — Temný rytíř, strážce dungeonů. Ve vzduchu je cítit síla starých kouzel.",
+    "exits": { "vychod": "dungeon_patro2" },
+    "itemIds": ["obsidianovy_krystal", "koruna_stinu"],
+    "npcIds": ["temny_rytir"],
+    "statusEffect": null
+  }
+]

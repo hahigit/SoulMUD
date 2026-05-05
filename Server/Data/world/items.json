@@ -1,0 +1,222 @@
+[
+  {
+    "id": "pochodna",
+    "name": "Pochodeň",
+    "description": "Doutnající pochodeň. Lepší než tma.",
+    "weight": 1,
+    "value": 5,
+    "usable": false,
+    "useEffect": null
+  },
+  {
+    "id": "stara_mapa",
+    "name": "Stará mapa",
+    "description": "Potrhaná mapa dungeonů. Některé části jsou nečitelné.",
+    "weight": 1,
+    "value": 10,
+    "usable": true,
+    "useEffect": { "type": "info", "message": "Mapa naznačuje, že boss komnata je na 2. patře dungeonů na západ. K dokončení hry musíš porazit Temného rytíře a vzít Korunu stínu." }
+  },
+  {
+    "id": "mec",
+    "name": "Meč",
+    "description": "Ocelový meč s runou světla na čepeli.",
+    "weight": 3,
+    "value": 50,
+    "usable": false,
+    "useEffect": null,
+    "attackBonus": 5
+  },
+  {
+    "id": "kuse",
+    "name": "Kuše",
+    "description": "Lehká kuše s krátkým dostřelem.",
+    "weight": 2,
+    "value": 40,
+    "usable": false,
+    "useEffect": null,
+    "attackBonus": 3
+  },
+  {
+    "id": "stit",
+    "name": "Štít",
+    "description": "Dřevěný štít obložený železem.",
+    "weight": 3,
+    "value": 35,
+    "usable": false,
+    "useEffect": null,
+    "defenseBonus": 4
+  },
+  {
+    "id": "lektvár_leceni",
+    "name": "Lektvar léčení",
+    "description": "Červená lahvička. Obnoví 30 HP.",
+    "weight": 1,
+    "value": 25,
+    "usable": true,
+    "useEffect": { "type": "heal", "amount": 30, "message": "Vypiješ lektvar léčení. Cítíš, jak se rány zavírají. (+30 HP)" }
+  },
+  {
+    "id": "magicky_svitek",
+    "name": "Magický svitek",
+    "description": "Svitek s kouzlem ohnivé koule. Použití: 1x.",
+    "weight": 1,
+    "value": 60,
+    "usable": true,
+    "consumable": true,
+    "useEffect": { "type": "attack_boost_temp", "amount": 15, "duration": 3, "message": "Přečteš svitek! Ohnivá koule obalí tvou zbraň plamenem. (+15 útok po dobu 3 tahů)" }
+  },
+  {
+    "id": "modry_krystal",
+    "name": "Modrý krystal",
+    "description": "Pulzuje modrým světlem. Magická energie.",
+    "weight": 1,
+    "value": 45,
+    "usable": true,
+    "useEffect": { "type": "status", "statusId": "magic_boost", "message": "Krystal exploduje modrou září! Cítíš příliv magické energie, ale hlava tě bolí. (Útok +10, Obrana -2 po dobu 5 tahů)" }
+  },
+  {
+    "id": "grimoir",
+    "name": "Grimoár",
+    "description": "Těžká kniha kouzel. Každé přečtené slovo zní jinak.",
+    "weight": 2,
+    "value": 80,
+    "usable": true,
+    "useEffect": { "type": "info", "message": "Přelistuješ grimoár. Nacházíš kapitolu o Temném rytíři: 'Jeho slabina je světlo. Zbraně požehnané světlem způsobují dvojnásobné poškození.'" }
+  },
+  {
+    "id": "zlata_mince",
+    "name": "Zlatá mince",
+    "description": "Třpytivá zlatá mince s tváří zapomenutého krále.",
+    "weight": 1,
+    "value": 1,
+    "usable": false,
+    "useEffect": null
+  },
+  {
+    "id": "temne_pivo",
+    "name": "Temné pivo",
+    "description": "Místní specialita. Obnoví 10 HP a dodá odvahu.",
+    "weight": 1,
+    "value": 8,
+    "usable": true,
+    "consumable": true,
+    "useEffect": { "type": "heal_and_status", "amount": 10, "statusId": "courage", "message": "Vypiješ temné pivo jedním douškem. Obnovíš 10 HP a cítíš neochvějnou odvahu. (Nebo jen opilost. Těžko říct.)" }
+  },
+  {
+    "id": "smazeny_krys",
+    "name": "Smažený krys",
+    "description": "Chutí překvapivě dobrý.",
+    "weight": 1,
+    "value": 3,
+    "usable": true,
+    "consumable": true,
+    "useEffect": { "type": "heal", "amount": 5, "message": "Sníš smaženého kryse. Chutná jako kuře. Obnovíš 5 HP." }
+  },
+  {
+    "id": "rezavy_klic",
+    "name": "Rezavý klíč",
+    "description": "Těžký zrezivělý klíč. Nevíš od čeho.",
+    "weight": 1,
+    "value": 15,
+    "usable": false,
+    "useEffect": null
+  },
+  {
+    "id": "kosteny_amulet",
+    "name": "Kostěný amulet",
+    "description": "Amulet vyřezaný z kosti neznámého stvoření. Vyzařuje chlad.",
+    "weight": 1,
+    "value": 30,
+    "usable": true,
+    "useEffect": { "type": "status", "statusId": "bone_shield", "message": "Nasadíš kostěný amulet. Studený vánek tě obalí. (Obrana +5 po dobu 4 tahů)" }
+  },
+  {
+    "id": "zeleny_sliz",
+    "name": "Zelený sliz",
+    "description": "Odpudivá hrudka slimu. Alchymisté za ni prý zaplatí.",
+    "weight": 1,
+    "value": 20,
+    "usable": false,
+    "useEffect": null
+  },
+  {
+    "id": "rytirska_prilba",
+    "name": "Rytířská přilba",
+    "description": "Popraskaná přilba. Chrání hlavu.",
+    "weight": 2,
+    "value": 25,
+    "usable": false,
+    "useEffect": null,
+    "defenseBonus": 2
+  },
+  {
+    "id": "zlaty_vacek",
+    "name": "Zlatý váček",
+    "description": "Váček s 15 zlatými.",
+    "weight": 1,
+    "value": 15,
+    "usable": true,
+    "useEffect": { "type": "gold", "amount": 15, "message": "Otevřeš váček a vyndáš 15 zlatých mincí." }
+  },
+  {
+    "id": "runovy_kamen",
+    "name": "Runový kámen",
+    "description": "Kámen s vyřezanou runou. Hučí, když ho držíš.",
+    "weight": 1,
+    "value": 50,
+    "usable": true,
+    "useEffect": { "type": "status", "statusId": "rune_power", "message": "Runový kámen se rozžhaví v dlani! Magická energie proudí tebou. (Útok +8, Obrana +3 po dobu 5 tahů)" }
+  },
+  {
+    "id": "lektvár_sily",
+    "name": "Lektvar síly",
+    "description": "Zlatavý lektvar. Dočasně zvyšuje útok.",
+    "weight": 1,
+    "value": 40,
+    "usable": true,
+    "consumable": true,
+    "useEffect": { "type": "attack_boost_temp", "amount": 8, "duration": 5, "message": "Vypiješ lektvar síly. Svaly se napnou, cítíš neuvěřitelnou sílu. (+8 útok po dobu 5 tahů)" }
+  },
+  {
+    "id": "obsidianovy_krystal",
+    "name": "Obsidiánový krystal",
+    "description": "Čistý temný krystal. Nejcennější věc, kterou jsi viděl.",
+    "weight": 2,
+    "value": 200,
+    "usable": false,
+    "useEffect": null,
+    "isQuestItem": true
+  },
+  {
+    "id": "koruna_stinu",
+    "name": "Koruna stínu",
+    "description": "Koruna z kouzelného stínu. Symbol vítězství nad Temným rytířem.",
+    "weight": 1,
+    "value": 500,
+    "usable": false,
+    "useEffect": null,
+    "isQuestItem": true,
+    "isWinCondition": true
+  },
+  {
+    "id": "temny_mec",
+    "name": "Temný meč",
+    "description": "Meč Temného rytíře. Útok +15.",
+    "weight": 4,
+    "value": 150,
+    "usable": false,
+    "useEffect": null,
+    "attackBonus": 15
+  },
+  {
+    "id": "bomba",
+    "name": "Bomba",
+    "description": "Malá ručně vyrobená bomba.",
+    "weight": 1,
+    "value": 30,
+    "usable": true,
+    "consumable": true,
+    "useEffect": { "type": "attack_boost_temp", "amount": 20, "duration": 1, "message": "Zapálíš bombu a hodíš ji! Obrovský výbuch. (+20 útok na 1 tah)" }
+  }
+]

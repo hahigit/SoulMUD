@@ -1,0 +1,84 @@
+[
+  {
+    "id": "magic_boost",
+    "name": "Magické zesílení",
+    "description": "Modrý krystal ti dodal magickou energii.",
+    "attackBonus": 10,
+    "defenseBonus": -2,
+    "durationTurns": 5,
+    "tickMessage": null
+  },
+  {
+    "id": "bone_shield",
+    "name": "Kostěný štít",
+    "description": "Kostěný amulet tě chrání chladným závojem.",
+    "attackBonus": 0,
+    "defenseBonus": 5,
+    "durationTurns": 4,
+    "tickMessage": null
+  },
+  {
+    "id": "rune_power",
+    "name": "Runová síla",
+    "description": "Runový kámen ti dodává sílu i ochranu.",
+    "attackBonus": 8,
+    "defenseBonus": 3,
+    "durationTurns": 5,
+    "tickMessage": null
+  },
+  {
+    "id": "courage",
+    "name": "Odvaha (nebo opilost)",
+    "description": "Temné pivo ti dodalo statečnost.",
+    "attackBonus": 3,
+    "defenseBonus": 0,
+    "durationTurns": 3,
+    "tickMessage": null
+  },
+  {
+    "id": "fire_weapon",
+    "name": "Ohnivá zbraň",
+    "description": "Tvá zbraň plane ohněm.",
+    "attackBonus": 15,
+    "defenseBonus": 0,
+    "durationTurns": 3,
+    "tickMessage": null
+  },
+  {
+    "id": "strength",
+    "name": "Síla",
+    "description": "Lektvar síly ti dodal neuvěřitelnou sílu.",
+    "attackBonus": 8,
+    "defenseBonus": 0,
+    "durationTurns": 5,
+    "tickMessage": null
+  },
+  {
+    "id": "poison",
+    "name": "Otrávení",
+    "description": "Jed ti pomalu ubírá životní sílu.",
+    "attackBonus": -2,
+    "defenseBonus": -2,
+    "hpPerTurn": -3,
+    "durationTurns": 4,
+    "tickMessage": "Jed tě spaluje zevnitř. (-3 HP)"
+  },
+  {
+    "id": "weakened",
+    "name": "Oslabení",
+    "description": "Útok nepřítele tě oslabil.",
+    "attackBonus": -4,
+    "defenseBonus": 0,
+    "durationTurns": 3,
+    "tickMessage": null
+  },
+  {
+    "id": "bomb_blast",
+    "name": "Výbušná síla",
+    "description": "Výbuch bomby tě naplnil ničivou energií.",
+    "attackBonus": 20,
+    "defenseBonus": 0,
+    "durationTurns": 1,
+    "tickMessage": null
+  }
+]

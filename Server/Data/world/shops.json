@@ -1,0 +1,43 @@
+[
+  {
+    "id": "bjorn_shop",
+    "name": "Bjornova zbrojnice",
+    "items": [
+      { "itemId": "mec", "price": 50 },
+      { "itemId": "kuse", "price": 40 },
+      { "itemId": "stit", "price": 35 },
+      { "itemId": "rytirska_prilba", "price": 25 },
+      { "itemId": "lektvár_leceni", "price": 25 }
+    ]
+  },
+  {
+    "id": "lyra_shop",
+    "name": "Lyřin kouzelný krám",
+    "items": [
+      { "itemId": "magicky_svitek", "price": 60 },
+      { "itemId": "modry_krystal", "price": 45 },
+      { "itemId": "grimoir", "price": 80 },
+      { "itemId": "runovy_kamen", "price": 70 },
+      { "itemId": "lektvár_sily", "price": 40 }
+    ]
+  },
+  {
+    "id": "remy_shop",
+    "name": "Remyho tajný stánek",
+    "items": [
+      { "itemId": "bomba", "price": 30 },
+      { "itemId": "kosteny_amulet", "price": 35 },
+      { "itemId": "lektvár_leceni", "price": 30 },
+      { "itemId": "pochodna", "price": 5 }
+    ]
+  },
+  {
+    "id": "grunk_shop",
+    "name": "Hospoda U Padlého rytíře",
+    "items": [
+      { "itemId": "temne_pivo", "price": 8 },
+      { "itemId": "smazeny_krys", "price": 3 },
+      { "itemId": "lektvár_leceni", "price": 20 }
+    ]
+  }
+]

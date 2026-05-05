@@ -1,0 +1,144 @@
+[
+  {
+    "id": "aldric",
+    "name": "Strážce Aldric",
+    "description": "Starý rytíř v ošumělé zbroji.",
+    "isShop": false,
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Vítej, dobrodruhu. Toto místo pohltilo mnoho statečných. Vezmi si zbraň ve zbrojnici a buď opatrný v dungeonu.\"",
+      "\"Magie proudí těmito chodbami a ne vždy přeje živým.\"",
+      "\"Slyšel jsem, že Temný rytíř sídlí v komnatě na 2. patře. Nikdo, kdo tam šel, se nevrátil... zatím.\""
+    ]
+  },
+  {
+    "id": "bjorn",
+    "name": "Kovář Bjorn",
+    "description": "Mohutný kovář s popáleninami na rukou.",
+    "isShop": true,
+    "shopId": "bjorn_shop",
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Hm? Dobrodruhu! Vezmi si, co potřebuješ. Mám práci — tady dole se zbroj spotřebovává rychleji než pivo v hospodě.\"",
+      "\"Prosím, nevracej zbraně ohnuté. Zase.\"",
+      "\"Tip zdarma: Štít se vyplatí v boss komnatě. Důvěřuj mi.\""
+    ]
+  },
+  {
+    "id": "lyra",
+    "name": "Čarodějnice Lyra",
+    "description": "Stará žena s jiskřivýma očima a fialovými vlasy.",
+    "isShop": true,
+    "shopId": "lyra_shop",
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Oooh, živý návštěvník! Vzácnost. Hledáš moc?\"",
+      "\"Mám tu svitek ohnivé koule — perfektní na slizáky. A bacha na modrý krystal, ten má vedlejší účinky.\"",
+      "\"Grimoár ti prozradí slabost Temného rytíře. Jen tak říkám.\""
+    ]
+  },
+  {
+    "id": "remy",
+    "name": "Obchodník Remy",
+    "description": "Nenápadný muž s příliš mnoha kapsami.",
+    "isShop": true,
+    "shopId": "remy_shop",
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Psst! Přijď blíž. Mám zboží, které jinde neseženeš.\"",
+      "\"Bomba? Lektváry? Informace o tajné chodbě?\"",
+      "\"Vše má cenu, příteli. Vše má cenu.\""
+    ]
+  },
+  {
+    "id": "grunk",
+    "name": "Hospodský Grunk",
+    "description": "Mohutný trpaslík za výčepním pultem.",
+    "isShop": true,
+    "shopId": "grunk_shop",
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Co si dáš? Temné pivo, smažená ještěrka nebo příběh o tom, jak jsem přežil pátý level dungeonů?\"",
+      "\"Pivo doporučuju. Příběh tě stejně připraví o chuť k jídlu.\"",
+      "\"Ten Temný rytíř? Jo, slyšel jsem o něm. Každý, kdo tam šel... no, aspoň mám dost zákazníků.\""
+    ]
+  },
+  {
+    "id": "duch_rytire",
+    "name": "Duch rytíře",
+    "description": "Průhledná figura v rozbitné zbroji.",
+    "isShop": false,
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Nezacházej dál... Třetí patro je prokleté od časů, kdy Temný alchymista provedl svůj experiment.\"",
+      "\"Slyšíš ten zvuk? To nejsou krysy. To nikdy nebyly krysy.\"",
+      "\"Moje zbroj leží kdesi v hnízdu slizáků. Pokud ji najdeš... nech ji tam. Patří jim teď.\""
+    ]
+  },
+  {
+    "id": "slizak_blub",
+    "name": "Slizák Blub",
+    "description": "Malý zelený slizák. Vypadá zvědavě.",
+    "isShop": false,
+    "isCombatant": true,
+    "hp": 25,
+    "maxHp": 25,
+    "attack": 4,
+    "defense": 1,
+    "goldReward": 8,
+    "itemReward": "zeleny_sliz",
+    "respawnTurns": 15,
+    "dialogLines": [
+      "\"Bloop blub glorp!\" — Slizák nevypadá agresivně, jen zvědavě. Možná ho zajímají tvé boty."
+    ]
+  },
+  {
+    "id": "slizak_elder",
+    "name": "Slizák Elder",
+    "description": "Velký tmavě zelený slizák s pruhovaným vzorem. Vypadá zkušeně.",
+    "isShop": false,
+    "isCombatant": true,
+    "hp": 50,
+    "maxHp": 50,
+    "attack": 8,
+    "defense": 3,
+    "goldReward": 20,
+    "itemReward": "lektvár_leceni",
+    "respawnTurns": 25,
+    "dialogLines": [
+      "\"GLOOOORP BLUB BLUB!\" — Elder slizák tě pohledem změří a zdá se, že je rozhodnutý bránit své hnízdo."
+    ]
+  },
+  {
+    "id": "zahadny_poutnik",
+    "name": "Záhadný poutník",
+    "description": "Figura zahalená v tmavém plášti. Ani nevidíš jeho obličej.",
+    "isShop": false,
+    "isCombatant": false,
+    "dialogLines": [
+      "\"Překvapivé, že jsi se dostal tak hluboko.\"",
+      "\"Boss komnatou na západ má někdo... čeká. Byl tu dříve než hrad.\"",
+      "\"Dobrou noc, dobrodruhu.\" — a zmizí ve tmě."
+    ]
+  },
+  {
+    "id": "temny_rytir",
+    "name": "Temný rytíř",
+    "description": "Figura v černé zbroji na trůně z kostí. Jeho oči svítí červeně.",
+    "isShop": false,
+    "isCombatant": true,
+    "hp": 150,
+    "maxHp": 150,
+    "attack": 18,
+    "defense": 8,
+    "goldReward": 100,
+    "itemReward": "temny_mec",
+    "isBoss": true,
+    "dialogLines": [
+      "\"Dalšího dobrodruha přivádí osud na mé práh.\"",
+      "\"Jsi první, kdo se dostal tak daleko za posledních sto let.\"",
+      "\"Máš odvahu... nebo pošetilost. V tomto místě je rozdíl malý.\"",
+      "\"Pokud mě porazíš, vezmi korunu. Zasloužíš si ji, dobrodruhu.\""
+    ]
+  }
+]
