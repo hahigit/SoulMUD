@@ -27,6 +27,16 @@ public class TakeCommand : IGameCommand
         if (!ctx.Player.CanCarry(item))
         { await ctx.Send(ctx.Res.GetError("InventoryFull").Replace("{name}", item.Name)); return; }
 
+        if (item.IsWinCondition)
+        {
+            var aliveEnemy = room.Npcs.FirstOrDefault(n => n.Def.IsCombatant && n.IsAlive);
+            if (aliveEnemy != null)
+            {
+                await ctx.Send($"\n  [!] Zbláznil ses? {aliveEnemy.Def.Name} tě sleduje a brání ti předmět sebrat! Musíš bojovat.");
+                return;
+            }
+        }
+        
         room.Items.Remove(item);
         ctx.Player.Inventory.Add(item);
         ctx.Player.Data.InventoryItemIds.Add(item.Id);
